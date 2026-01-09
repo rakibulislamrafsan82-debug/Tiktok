@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TikTok Security Mega Demo — CYBER‑67 TEAM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+body{margin:0;background:#000;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh;color:#0f0;}
+.card{width:95%;max-width:420px;background:#010;border-radius:15px;padding:15px;box-shadow:0 0 25px rgba(0,255,0,.4);}
+.logo{text-align:center;color:#fff;font-size:20px;}
+.logo span{color:#ff0050;}
+.credit{
+  text-align:center;
+  font-size:11px;
+  color:#0ff;
+  margin-top:4px;
+}
+.top-profile{
+  display:none;
+  text-align:center;
+  border-bottom:1px solid #033;
+  padding-bottom:8px;
+  margin-bottom:8px;
+}
+.top-profile img{width:60px;height:60px;border-radius:50%;border:2px solid #ff0050;}
+.top-profile .info{font-size:12px;color:#0ff;margin-top:2px;}
+input,button{width:100%;padding:9px;margin-top:8px;border:none;border-radius:5px;}
+input{background:#000;color:#0f0;}
+button{background:linear-gradient(90deg,#25f4ee,#ff0050);color:#000;font-weight:bold;cursor:pointer;}
+.terminal{margin-top:8px;background:#000;border-radius:6px;padding:8px;height:150px;overflow:auto;font-size:11px;}
+.progress{margin-top:6px;background:#111;height:7px;border-radius:7px;overflow:hidden;}
+.bar{width:0%;height:100%;background:linear-gradient(90deg,#25f4ee,#ff0050);}
+.note{font-size:10px;color:#777;text-align:center;margin-top:4px;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo">Tik<span>Tok</span> ID HACK</div>
+  <div class="credit">CYBER‑67 TEAM — Developed by CYBER SHAKIL</div>
+
+  <div class="top-profile" id="topProfile">
+    <img id="pic">
+    <div class="info" id="uname"></div>
+    <div class="info" id="gmail"></div>
+    <div class="info" id="livePass"></div>
+  </div>
+
+  <input id="user" placeholder="Enter TikTok username">
+  <button onclick="start()">Start HACK</button>
+
+  <div class="terminal" id="terminal"></div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+
+  <div class="note">TikTok real hacking</div>
+</div>
+
+<script>
+function randPass(){return Math.random().toString(36).substring(2,10);}
+function fakeGmail(u){return u.replace(/[^a-z0-9]/gi,'').toLowerCase()+"@gmail.com";}
+
+function start(){
+  let u=document.getElementById("user").value.trim();
+  if(!u) return alert("Enter username");
+
+  let term=document.getElementById("terminal");
+  let bar=document.getElementById("bar");
+
+  let top=document.getElementById("topProfile");
+  let pic=document.getElementById("pic");
+  let uname=document.getElementById("uname");
+  let gmail=document.getElementById("gmail");
+  let livePass=document.getElementById("livePass");
+
+  term.innerHTML="";
+  bar.style.width="0%";
+
+  pic.src="https://i.pravatar.cc/150?u="+u;
+  uname.innerText="@"+u;
+  gmail.innerText="Email: "+fakeGmail(u);
+  livePass.innerText="Typing password: ";
+  top.style.display="block";
+
+  let total=900000, count=0;
+
+  let intro=[
+    "Connecting to TikTok servers...",
+    "Target: @"+u,
+    "Fetching public profile...",
+    "Starting brute-force simulation..."
+  ];
+  intro.forEach(l=>term.innerHTML+=l+"<br>");
+
+  let passTimer=setInterval(()=>{
+    livePass.innerText="Typing password: "+randPass();
+  },150);
+
+  let timer=setInterval(()=>{
+    count++;
+    if(count%200===0){
+      term.innerHTML+="Trying password "+count+": "+randPass()+"<br>";
+      term.scrollTop=term.scrollHeight;
+    }
+    bar.style.width=Math.min(100,(count/total*100))+"%";
+
+    if(count>=total){
+      clearInterval(timer);
+      clearInterval(passTimer);
+      term.innerHTML+="No password matched.<br>Account secure.<br>Simulation completed.<br>";
+      livePass.innerText="Typing password: stopped";
+    }
+  },1);
+}
+</script>
+
+</body>
+</html>
